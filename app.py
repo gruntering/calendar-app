@@ -3,7 +3,6 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, f
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from models import db, User, Holiday, UserDay
 from flask_wtf import FlaskForm
