@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Change Email</h2>
+    <form method="POST" class="account-form">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.new_email.label(class="form-label") }}
+            {{ form.new_email(class="form-control") }}
+            {% for error in form.new_email.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            {% for error in form.password.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        {{ form.submit(class="btn btn-primary btn-save") }}
+    </form>
+</div>
+{% endblock %}

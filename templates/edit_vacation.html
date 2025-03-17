@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Vacation Days</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container form-container">
+        <h2 class="form-title">Edit Vacation Days</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" class="account-form">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.vacation_days.label }}
+                {{ form.vacation_days(class="form-control") }}
+            </div>
+            {{ form.submit(class="btn btn-save") }}
+             
+            <p><a href="{{ url_for('calendar') }}" class="btn btn-secondary">Cancel</a></p>
+        </form>
+    </div>
+</body>
+</html>

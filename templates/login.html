@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form method="POST" id="loginForm">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control") }}
+        {% for error in form.username.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+        {% for error in form.password.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+<br>
+<p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+
+<script>
+    // Redirect if already logged in
+    {% if current_user.is_authenticated %}
+        window.location.href = "{{ url_for('calendar') }}";
+    {% endif %}
+
+    // Prevent back button caching (optional, for extra safety)
+    window.onload = function() {
+        if (window.history) {
+            window.history.forward();  // Forces forward navigation
+        }
+    };
+</script>
+{% endblock %}

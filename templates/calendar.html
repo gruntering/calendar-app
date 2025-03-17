@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="calendar-container">
+                <h2 class="calendar-title">Your Calendar</h2>
+                <div class="counters">
+                    <div class="counter-item">
+                        <span class="counter-label">Vacation Days:</span>
+                        <span id="vacation-counter" class="counter-value">0</span>
+                        <a href="{{ url_for('edit_vacation') }}" class="btn btn-sm btn-primary ml-2">Edit</a>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-label">Sick Days:</span>
+                        <span id="sick-counter" class="counter-value">0</span>
+                    </div>
+                </div>
+                <div id="calendar"></div>
+            </div>
+        </div>
+
+        <div id="accountSidebar" class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/profile_placeholder.png') }}" alt="Profile" class="profile-pic">
+                <span class="username">{{ username }}</span>
+                <button id="closeSidebarBtn" class="btn-close-sidebar">×</button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="{{ url_for('calendar') }}" class="sidebar-link">Calendar</a></li>
+                <li><a href="{{ url_for('change_password') }}" class="sidebar-link">Change Password</a></li>
+                <li><a href="{{ url_for('change_email') }}" class="sidebar-link">Change Email</a></li>
+                <li><a href="{{ url_for('edit_vacation') }}" class="sidebar-link">Edit Vacation Days</a></li>
+                <li><a href="{{ url_for('logout') }}" class="sidebar-link text-danger">Logout</a></li>
+            </ul>
+        </div>
+        <button id="burgerBtn" class="btn-burger">☰</button>
+    </div>
+
+    <div id="entryModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalDate"></h5>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <form id="entryForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="selectedDate" name="date">
+                        <div class="form-group">
+                            <label for="entryType">Type</label>
+                            <select id="entryType" name="entry_type" class="form-control">
+                                <option value="Work">Work</option>
+                                <option value="Vacation">Vacation</option>
+                                <option value="Sick">Sick</option>
+                                <option value="Absence">Absence</option>
+                            </select>
+                        </div>
+                        <div id="hours_field" class="form-group" style="display:none;">
+                            <label for="hours">Hours</label>
+                            <input type="number" id="hours" name="hours" class="form-control" step="0.5" min="0">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-save">Save</button>
+                        <button type="button" id="deleteEntryBtn" class="btn btn-delete">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

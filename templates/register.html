@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST" id="registerForm" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control") }}
+        {% for error in form.username.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control", type="email", id="emailInput") }}
+        <span id="emailError" class="text-danger"></span>
+        {% for error in form.email.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+        {% for error in form.password.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.confirm_password.label(class="form-label") }}
+        {{ form.confirm_password(class="form-control") }}
+        {% for error in form.confirm_password.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+<br>
+<p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+
+<script>
+document.getElementById('emailInput').addEventListener('input', function(e) {
+    const email = e.target.value;
+    const emailError = document.getElementById('emailError');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format check
+
+    if (!emailRegex.test(email) && email.length > 0) {
+        emailError.textContent = 'Please enter a valid email address (e.g., user@example.com)';
+        e.target.classList.add('is-invalid');
+    } else {
+        emailError.textContent = '';
+        e.target.classList.remove('is-invalid');
+    }
+});
+</script>
+{% endblock %}

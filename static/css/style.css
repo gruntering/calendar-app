@@ -1,0 +1,300 @@
+body {
+    background-color: #f4f7fa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+.content-wrapper {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.calendar-container {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-top: 70px;
+}
+
+.calendar-title {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.counters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #eef2f7;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.counter-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter-label {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.counter-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.btn-burger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 1200;
+}
+
+.btn-burger:hover {
+    background: #0056b3;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background: #007bff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.username {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.btn-close-sidebar {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.btn-close-sidebar:hover {
+    color: #ffeb3b;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 15px 20px;
+}
+
+.sidebar-link {
+    text-decoration: none;
+    color: #2c3e50;
+    display: block;
+    font-size: 1.1rem;
+    transition: color 0.2s, background 0.2s;
+}
+
+.sidebar-link:hover {
+    color: #007bff;
+    background: #f8f9fa;
+    text-decoration: none;
+}
+
+.sidebar-link.text-danger:hover {
+    color: #dc3545;
+}
+
+.fc-button {
+    background-color: #007bff !important;
+    border: none !important;
+    border-radius: 20px !important;
+    color: #fff !important;
+    font-size: 0.9rem !important;
+    padding: 6px 12px !important;
+    height: 34px !important;
+    transition: background-color 0.2s !important;
+    background-image: none !important; /* Remove any gradient */
+}
+
+.fc-button:hover {
+    background-color: #0056b3 !important;
+    background-image: none !important; /* Ensure no gradient on hover */
+}
+
+.fc-button.fc-state-active {
+    background-color: #004085 !important;
+    background-image: none !important; /* Ensure no gradient when active */
+}
+
+.fc-button:not(.fc-state-active):hover {
+    background-color: #0056b3 !important;
+    background-image: none !important; /* Reinforce hover state */
+}
+
+.fc-icon {
+    background-image: none !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.fc-prev-button .fc-icon.fc-icon-left {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-size: contain !important;
+}
+
+.fc-next-button .fc-icon.fc-icon-right {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-size: contain !important;
+}
+
+.fc-event {
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 0.9rem;
+}
+
+.btn-save {
+    background-color: #28a745;
+    border: none;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+
+.btn-save:hover {
+    background-color: #218838;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    border: none;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-title {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.account-form .form-control {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+}
+
+.account-form .btn-save {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .counters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .calendar-container {
+        margin-top: 60px;
+        padding: 15px;
+    }
+    .sidebar {
+        width: 250px;
+        right: -250px;
+    }
+    .sidebar.active {
+        right: 0;
+    }
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+    }
+    .username {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .calendar-title {
+        font-size: 1.5rem;
+    }
+    .btn-burger {
+        top: 15px;
+        right: 15px;
+    }
+    .sidebar {
+        width: 200px;
+        right: -200px;
+    }
+    .sidebar.active {
+        right: 0;
+    }
+}
