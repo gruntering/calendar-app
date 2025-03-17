@@ -12,7 +12,13 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, Regexp
 from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'replace-this-with-a-long-random-string')
+# Read SECRET_KEY from secret file if available, else fallback
+secret_file_path = '/etc/secrets/secret_key'  # Match the name you’ll use in Render
+if os.path.exists(secret_file_path):
+    with open(secret_file_path, 'r') as f:
+        app.config['SECRET_KEY'] = f.read().strip()
+else:
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback-for-testing-only')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.dirname(__file__), 'site.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
