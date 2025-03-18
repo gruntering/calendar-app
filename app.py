@@ -18,7 +18,8 @@ if os.path.exists(secret_file_path):
         app.config['SECRET_KEY'] = f.read().strip()
 else:
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback-for-testing-only')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.dirname(__file__), 'site.db')
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.dirname(__file__), 'site.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///' + os.path.join(os.path.dirname(__file__), 'site.db'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
